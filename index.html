@@ -33,11 +33,6 @@
             
             <div id="mp3_box_line" class="mp3">
                 <div id="time_play">0:00</div>
-                    <!-- <div id="mp3_line" class="mp3">
-                        <div id="mp3_circle_hitbox">
-                            <span id="mp3_circle" class="mp3"></span>
-                        </div>
-                    </div> -->
                     <div id="box_progress_bar">
                         <input type="range" id="progress_bar" value="0" min="0" max="100">
                     </div>
@@ -45,6 +40,9 @@
             </div>
             
             <div id="box_controls">
+                <div class="icon_hitbox" onclick="">
+                    <img src="icons/volume.png" class="icon_controls" id="icon_volume">
+                </div>
                 <div class="icon_hitbox" onclick="PrevSong();">
                     <img src="icons/back.png" class="icon_controls" id="icon_back">
                 </div>
@@ -54,11 +52,14 @@
                 <div class="icon_hitbox" onclick="NextSong();">
                     <img src="icons/front.png" class="icon_controls" id="icon_front">
                 </div>
+                <div class="icon_hitbox" onclick="toggleLoop();">
+                    <img src="icons/repeat.png" class="icon_controls" id="icon_loop">
+                </div>
             </div>
         </div>
 
         <div id="box_list">
-            <div class="box_music" onclick="loadSong(0)">
+            <div class="box_music" onclick="loadListSong(0)">
                 <div class="box_list_img"><img src="imgs/SonicCDX_QQZ1.jpg" class="list_img"></div>
                 <div class="box_list_info">
                     <div class="list_name">Quartz Quadrant Zone (Act 1) - Sonic CDX OST</div>
@@ -67,7 +68,7 @@
                 <div class="list_duration">3:06</div>
             </div>
 
-            <div class="box_music" onclick="loadSong(1)">
+            <div class="box_music" onclick="loadListSong(1)">
                 <div class="box_list_img"><img src="imgs/SonicCDX_PPZ1.jpg" class="list_img"></div>
                 <div class="box_list_info">
                     <div class="list_name">Palmtree Panic Zone (Act 1) - Sonic CDX OST</div>
@@ -76,7 +77,7 @@
                 <div class="list_duration">3:40</div>
             </div>
 
-            <div class="box_music" onclick="loadSong(2)">
+            <div class="box_music" onclick="loadListSong(2)">
                 <div class="box_list_img"><img src="imgs/AltosOdyssey.png" class="list_img"></div>
                 <div class="box_list_info">
                     <div class="list_name">Alto's Odyssey Main Theme</div>
@@ -85,7 +86,7 @@
                 <div class="list_duration">5:25</div>
             </div>
 
-            <div class="box_music" onclick="loadSong(3)">
+            <div class="box_music" onclick="loadListSong(3)">
                 <div class="box_list_img"><img src="imgs/Speedrunners.png" class="list_img"></div>
                 <div class="box_list_info">
                     <div class="list_name">SpeedRunners Level 1</div>

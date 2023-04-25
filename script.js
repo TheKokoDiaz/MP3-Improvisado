@@ -1,13 +1,3 @@
-/* var audio = document.getElementById('player');
-var BtnPlay = document.getElementById('icon_play');
-var BtnPrev = document.getElementById('icon_back');
-var BtnNext = document.getElementById('icon_front');
-var TimePlay = document.getElementById('time_play');
-var TimeEnd = document.getElementById('time_end');
-var SongTitle = document.getElementById('name');
-var SongArtist = document.getElementById('artist');
-var SongImage = document.getElementById('mp3_image'); */
-
 const List = [
     {
         title: 'Quartz Quadrant Zone (Act 1) - Sonic CDX OST',
@@ -48,6 +38,15 @@ const List = [
 
 var currentSong = 0;
 var IsPlaying = false;
+var Loop = 0;
+var RandomList = [];
+var RandomListIndex = 0;
+var RandomListExist = false;
+
+function loadListSong(x){
+    RandomListExist = false;
+    loadSong(x);
+}
 
 function loadSong(n){
     currentSong = n;
@@ -81,11 +80,19 @@ function ChangeImg(img){
 }
 
 function togglePlay(){
-    if(IsPlaying == false){
-        playSong();
+    var audio = document.getElementById('player');
+    var src = audio.getAttribute('src');
+    
+    if(src != null){
+        if(IsPlaying == false){
+            playSong();
+        }
+        else{
+            pauseSong();
+        }
     }
     else{
-        pauseSong();
+        loadSong(0);
     }
 
 }
@@ -117,28 +124,77 @@ function pauseSong(){
 }
 
 function PrevSong(){
-    currentSong--;
-    if(currentSong < 0){
-        currentSong = List.length - 1;
+    if(Loop == 0 || Loop == 1){
+        currentSong--;
+        if(currentSong < 0){
+            currentSong = List.length - 1;
+        }
+
+        RandomListExist == false;
+    }
+    else{
+        setRandomList();
+
+        RandomListIndex--;
+        if(RandomListIndex < 0){
+            RandomListIndex = List.length - 1;
+        }
+        currentSong = RandomList[RandomListIndex];
     }
 
     loadSong(currentSong);
 }
 
 function NextSong(){
-    currentSong++;
-    if(currentSong > List.length - 1){
-        currentSong = 0;
+    if(Loop == 0 || Loop == 1){
+        currentSong++;
+        if(currentSong > List.length - 1){
+            currentSong = 0;
+        }
+
+        RandomListExist == false;
+    }
+    else{
+        setRandomList();
+
+        RandomListIndex++;
+        if(RandomListIndex > RandomList.length - 1){
+            RandomListIndex = 0;
+        }
+        currentSong = RandomList[RandomListIndex];
     }
 
     loadSong(currentSong);
+}
+
+function toggleLoop(){
+    var BtnLoop = document.getElementById('icon_loop');
+    var LoopImg = 'icons/';
+
+    switch(Loop){
+        case 0:
+            Loop ++; //1
+            LoopImg += 'repeat-one.png';
+        break;
+
+        case 1:
+            Loop ++; //2
+            LoopImg += 'random.png';
+        break;
+        
+        case 2:
+            Loop = 0;
+            LoopImg += 'repeat.png';
+        break;
+    }
+    
+    BtnLoop.setAttribute('src', LoopImg);
 }
 
 function updateTime(){
     var audio = document.getElementById('player');
     var bar = document.getElementById('progress_bar');
     var TimePlay = document.getElementById('time_play');
-    /* var TimeEnd = document.getElementById('time_end'); */
 
     var current = audio.currentTime;
     var duration = audio.duration;
@@ -155,6 +211,44 @@ function updateTime(){
     TimePlay.innerText = minutes + ':' + seconds;
 
     if(current == duration){
-        NextSong();
+        switch(Loop){
+            case 0:
+                NextSong();
+            break;
+
+            case 1:
+                playSong();
+            break;
+
+            case 2:
+                setRandomList();
+
+                if(RandomListExist == true){
+                    NextSong();
+                }
+            break;
+        }
+    }
+}
+
+function setRandomList(){
+    if(RandomListExist == false){
+        RandomListIndex = -1;
+        RandomList = [];
+        for(var i = 0; i <= List.length - 1; i++){
+            RandomList.push(i);
+        }
+
+        for(var i = List.length - 1; i >= 0; i--){
+            const x = Math.floor(Math.random() * (i + 1));
+            [RandomList[i], RandomList[x]] = [RandomList[x], RandomList[i]];
+        }
+
+        var n = RandomList.indexOf(currentSong);
+        RandomList.splice(n, 1);
+        RandomList.push(currentSong);
+        console.log(RandomList);
+
+        RandomListExist = true;
     }
 }
