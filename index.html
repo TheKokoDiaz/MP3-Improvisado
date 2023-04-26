@@ -5,12 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mp3 Improvisado</title>
-
+    
+    <link rel="shortcut icon" href="imgs/floragato.png">
     <link rel="stylesheet" href="styles.css">
     
 </head>
 <body>
     <div id="blur">
+        <!-- <div id="msg_hover">Texto</div>
+        <div id="box_volume_bar"><input type="range" id="volume_bar" min="0" max="100" value="50"></div> -->
+        
         <div id="mp3_general_box">
             <audio id="player">
                 <source src="" type="audio/mpeg">
@@ -23,10 +27,10 @@
                 
                 <div id="mp3_box_text">
                     <div id="mp3_name" class="mp3">
-                        <p id="name">Selecciona una Música / Canción de la lista de abajo</p>
+                        <div id="name">Selecciona una Música de la lista de abajo</div>
                     </div>
                     <div id="mp3_artist" class="mp3">
-                        <p id="artist">Desliza la lista para ver más canciones</p>
+                        <div id="artist">Desliza la lista para ver más canciones</div>
                     </div>
                 </div>
             </flexbox>
@@ -40,7 +44,7 @@
             </div>
             
             <div id="box_controls">
-                <div class="icon_hitbox" onclick="">
+                <div class="icon_hitbox" onclick="" onmouseover="">
                     <img src="icons/volume.png" class="icon_controls" id="icon_volume">
                 </div>
                 <div class="icon_hitbox" onclick="PrevSong();">

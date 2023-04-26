@@ -12,34 +12,59 @@ body{
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
-    overflow-y: hidden;
+    
+    overflow: hidden;
 
     transition: 1s;
 }
 
 #blur{
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100%;
     top: 0px;
     left: 0px;
     
     backdrop-filter: blur(4px);
+    z-index: 0;
+}
 
-    z-index: 1;
+#msg_hover{
+    position: absolute;
+
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    padding: 8px 12px;
+    color: black;
+
+    transition: 0.8s;
+    z-index: 5;
+}
+
+#box_volume_bar{
+    position: absolute;
+
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    padding: 4px 12px;
+
+    transition: 0.8s;
+    z-index: 5;
 }
 
 #mp3_general_box{
-    position: absolute;
+    position: relative;
     width: 90%;
     height: auto;
     top: 3%;
     left: 3%;
     padding: 2%;
-    padding-bottom: 3.5%;
-    overflow-y: hidden;
+    padding-bottom: 0%;
+    margin-bottom: 0.5%;
+    overflow: hidden;
 
-    /* border: 1px solid blue; */
     background-color: rgba(255, 255, 255, 0.65);
     border-radius: 10px;
 
@@ -48,8 +73,7 @@ body{
 
 #mp3_flexbox{
     width: 100%;
-    height: 60%;
-    /* border: 1px solid white; */
+    height: auto;
 
     display: flex;
     flex-direction: row;
@@ -58,12 +82,8 @@ body{
     align-content: center;
 }
 
-/* .mp3{
-    border: 1px solid black;
-} */
-
 #mp3_box_image{
-    height: 100%;
+    height: auto;
 
     display: flex;
     justify-content: center;
@@ -94,12 +114,11 @@ body{
 }
 
 #mp3_box_text{
-    /* border: 1px solid blue; */
     height: 100%;
     width: 50%;
     text-align: center;
 
-    flex-grow: 1;
+    flex-grow: 2;
 }
 
 #mp3_name{
@@ -109,12 +128,24 @@ body{
     font-size: 26px;
     font-weight: bold;
     overflow-y: hidden;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #mp3_artist{
     width: 100%;
     height: 45%;
     overflow-y: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#name, #artist{
+    padding: 0px 2%;
 }
 
 #mp3_box_line{
@@ -130,8 +161,7 @@ body{
 
 #box_progress_bar{
     width: 60%;
-    padding-top: 4%;
-    padding-bottom: 2%;
+    padding: 2% 0%;
 }
 
 #progress_bar{
@@ -185,18 +215,16 @@ body{
 }
 
 #box_list{
-    position: absolute;
-    top: 78.2%;
+    position: relative;
+    top: 4%;
     left: 3%;
     width: 94%;
-    height: 23%;
-    /* border: 1px solid white; */
+    height: 29.5%;
     border-radius: 10px 10px 0px 0px;
     overflow-y: scroll;
 }
 
 .box_music{
-    /* border: 1px solid white; */
     background-color: rgba(255, 255, 255, 0.65);
     border-radius: 10px;
     margin-bottom: 2%;
@@ -209,6 +237,10 @@ body{
 
 .box_list_img{
     width: 20%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .list_img{
@@ -240,11 +272,9 @@ body{
     width: 10%;
 }
 
-@media screen and (max-width: 426px) {
+@media screen and (max-width: 500px) {
     #mp3_general_box{
-        height: 70%;
-        
-        font-size: 14px;
+        height: 65%;
     }
 
     #mp3_flexbox{
@@ -264,7 +294,6 @@ body{
     }
    
     #mp3_box_text{
-        /* border: 1px solid blue; */
         order: 1;
         height: 40%;
         width: 100%;
@@ -280,10 +309,175 @@ body{
     
     #mp3_artist{
         height: 40%;
-        font-size: 16px;
     }
+}
 
-    /* .mp3{
-        border: 1px solid black;
-    } */
+@media screen and (min-width: 501px) and (max-width: 1024px){
+    html{
+        font-size: 18px;
+    }
+    
+    #mp3_general_box{
+        height: 50%;
+        margin-bottom: 0.25%;
+        border-radius: 10px;
+    }
+    
+    #mp3_flexbox{
+        height: 48%;
+    }
+    
+    #mp3_box_text{
+        width: 50%;
+    }
+    
+    #mp3_name{
+        height: 60%;
+        font-size: 26px;
+    }
+    
+    #mp3_artist{
+        height: 40%;
+    }
+    
+    #box_progress_bar{
+        width: 75%;
+        padding: 3% 0%;
+    }
+    
+    #box_controls{
+        height: 25%;
+    }
+    
+    .icon_hitbox{
+        height: 60%;
+        padding: 1.4%;
+        margin: 0% 2%;
+    }
+    
+    #icon_play{
+        width: 75%;
+    }
+    
+    #box_list{
+        height: 42.5%;
+        border-radius: 10px 10px 0px 0px;
+    }
+    
+    .box_music{
+        background-color: rgba(255, 255, 255, 0.65);
+        border-radius: 10px;
+        margin-bottom: 1%;
+        padding: 1% 0%;
+    
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    
+    .box_list_img{
+        width: 10%;
+    }
+    
+    .list_img{
+        border-radius: 5px;
+    }
+    
+    .box_list_info{
+        width: 75%;
+    }
+    
+    .list_name{
+        font-size: 22px;
+        height: 22px;
+        padding-bottom: 10px;
+    }
+    
+    .list_artist{
+        height: 18px;
+        padding-bottom: 5px;
+    }
+}
+
+@media screen and (min-width: 1025px){
+    html{
+        font-size: 20px;
+    }
+    
+    #mp3_general_box{
+        height: 60%;
+        margin-bottom: 0.1%;
+        border-radius: 15px;
+    }
+    
+    #mp3_flexbox{
+        height: 40%;
+    }
+    
+    #mp3_box_text{
+        width: 50%;
+    }
+    
+    #mp3_name{
+        height: 69%;
+        font-size: 34px;
+    }
+    
+    #mp3_artist{
+        height: 29%;
+    }
+    
+    #box_progress_bar{
+        width: 80%;
+        padding: 3% 0%;
+    }
+    
+    #box_controls{
+        height: 25%;
+    }
+    
+    .icon_hitbox{
+        height: 60%;
+        padding: 1.4%;
+        margin: 0% 2%;
+    }
+    
+    #icon_play{
+        width: 75%;
+    }
+    
+    #box_list{
+        height: 31.5%;
+        border-radius: 15px 15px 0px 0px;
+    }
+    
+    .box_music{
+        background-color: rgba(255, 255, 255, 0.65);
+        border-radius: 15px;
+        margin-bottom: 0.5%;
+        padding: 1% 0%;
+    }
+    
+    .box_list_img{
+        width: 5%;
+    }
+    
+    .list_img{
+        border-radius: 10px;
+    }
+    
+    .box_list_info{
+        width: 80%;
+    }
+    
+    .list_name{
+        font-size: 26px;
+        height: 26px;
+        padding-bottom: 10px;
+    }
+    
+    .list_artist{
+        height: 20px;
+        padding-bottom: 10px;
+    }
 }

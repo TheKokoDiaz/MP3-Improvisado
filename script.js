@@ -252,3 +252,25 @@ function setRandomList(){
         RandomListExist = true;
     }
 }
+
+/* function showMsg(msg, div){
+    var box = document.getElementById('msg_hover');
+    box.innerText = msg;
+
+    var coord = div.getBoundingClientRect();
+    var x = Math.floor(coord.left);
+    var h = Math.floor(coord.height) + 5;
+    var y = Math.floor(coord.top);
+
+    box.style.left = x + 'px';
+    box.style.top = (y + h) + 'px';
+    
+
+    console.log(coord, x, y);
+    console.log(msg);
+}
+
+function hideMsg(){
+    var box = document.getElementById('msg_hover');
+    box.style.display = 'none';
+} */
