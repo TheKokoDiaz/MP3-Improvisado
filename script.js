@@ -255,24 +255,32 @@ function setRandomList(){
     }
 }
 
-/* function showMsg(msg, div){
-    var box = document.getElementById('msg_hover');
-    box.innerText = msg;
+var BtnVolume = document.getElementById('icon_volume');
 
-    var coord = div.getBoundingClientRect();
-    var x = Math.floor(coord.left);
-    var h = Math.floor(coord.height) + 5;
-    var y = Math.floor(coord.top);
+var VolumeVar = document.getElementById('volume_bar');
+var Vol = document.getElementById('volume');
 
-    box.style.left = x + 'px';
-    box.style.top = (y + h) + 'px';
-    
+VolumeVar.addEventListener('mousemove', changeVolume);
+VolumeVar.addEventListener('touchmove', changeVolume);
 
-    console.log(coord, x, y);
-    console.log(msg);
+function showVolumeBar(){
+    var box = document.getElementById('box_volume_bar');
+
+    box.style.display = 'flex';
+    box.style.top = event.clientY + 'px';
+    box.style.left = event.clientX + 'px';
 }
 
-function hideMsg(){
-    var box = document.getElementById('msg_hover');
+
+function hideVolumeBar(){
+    var box = document.getElementById('box_volume_bar');
     box.style.display = 'none';
-} */
+}
+
+function changeVolume(){
+    var audio = document.getElementById('player');
+
+    Vol.innerText = VolumeVar.value + ' / 100';
+    audio.volume = VolumeVar.value/100;
+
+}

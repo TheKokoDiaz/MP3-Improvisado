@@ -15,8 +15,12 @@
 </head>
 <body>
     <div id="blur">
-        <!-- <div id="msg_hover">Texto</div>
-        <div id="box_volume_bar"><input type="range" id="volume_bar" min="0" max="100" value="50"></div> -->
+        <div id="msg_hover">Texto</div>
+        <div id="box_volume_bar" onclick="hideVolumeBar()">
+            <div class="box_volume">✖</div>
+            <input type="range" id="volume_bar" min="0" max="100" value="100" step="1">
+            <div class="box_volume" id="volume">100 / 100</div>
+        </div>
         
         <div id="mp3_general_box">
             <audio id="player">
@@ -47,7 +51,7 @@
             </div>
             
             <div id="box_controls">
-                <div class="icon_hitbox" onclick="" onmouseover="">
+                <div class="icon_hitbox" onclick="showVolumeBar()">
                     <img src="icons/volume.png" class="icon_controls" id="icon_volume">
                 </div>
                 <div class="icon_hitbox" onclick="PrevSong();">
