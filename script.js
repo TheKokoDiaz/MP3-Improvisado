@@ -64,6 +64,8 @@ function loadSong(n){
     audio.setAttribute('src', song.file);
     playSong();
 
+    window.document.title = song.title + ' - MP3 Improvisado';
+
     SongTitle.innerText = song.title;
     SongArtist.innerText = song.artist;
     SongImage.setAttribute('src', song.image);
