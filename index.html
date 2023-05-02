@@ -16,17 +16,23 @@
 <body>
     <div id="blur">
         <div id="msg_hover">Texto</div>
+        
+        <!-- #region Volume Bar-->
         <div id="box_volume_bar" onclick="hideVolumeBar()">
             <div class="box_volume">✖</div>
             <input type="range" id="volume_bar" min="0" max="100" value="100" step="1">
             <div class="box_volume" id="volume">100 / 100</div>
         </div>
+        <!-- #endregion -->
         
+        <!-- #region MP3 Player -->
         <div id="mp3_general_box">
-            <audio id="player">
+            <audio id="player"><!-- Contains the audio -->
                 <source src="" type="audio/mpeg">
             </audio>
 
+            <!-- #region Music Info.-->
+            <!-- Shows the Image, Name and Artist -->
             <flexbox id="mp3_flexbox">
                 <div id="mp3_box_image" class="mp3">
                     <img src="icons/disco.png" id="mp3_image">
@@ -41,7 +47,10 @@
                     </div>
                 </div>
             </flexbox>
+            <!-- #endregion -->
             
+            <!-- #region Progress Bar-->
+            <!-- Show the actual time, duration and the progress bar -->
             <div id="mp3_box_line" class="mp3">
                 <div id="time_play">0:00</div>
                     <div id="box_progress_bar">
@@ -49,7 +58,10 @@
                     </div>
                 <div id="time_end">0:00</div>
             </div>
+            <!-- #endregion -->
             
+            <!-- #region Controls-->
+            <!-- Contains the controls to change the volume, enable loop or random, change to previous / next music, and play / pause -->
             <div id="box_controls">
                 <div class="icon_hitbox" onclick="showVolumeBar()">
                     <img src="icons/volume.png" class="icon_controls" id="icon_volume">
@@ -67,9 +79,15 @@
                     <img src="icons/repeat.png" class="icon_controls" id="icon_loop">
                 </div>
             </div>
+            <!-- #endregion -->
         </div>
+        <!-- #endregion -->
 
+        <!-- #region List -->
+        <!-- Is the list that shows the music that can be played and their information -->
         <div id="box_list">
+            
+            <!-- Music 1-->    
             <div class="box_music" onclick="loadListSong(0)">
                 <div class="box_list_img"><img src="imgs/SonicCDX_QQZ1.jpg" class="list_img"></div>
                 <div class="box_list_info">
@@ -78,7 +96,8 @@
                 </div>
                 <div class="list_duration">3:06</div>
             </div>
-
+            
+            <!-- Music 2-->
             <div class="box_music" onclick="loadListSong(1)">
                 <div class="box_list_img"><img src="imgs/SonicCDX_PPZ1.jpg" class="list_img"></div>
                 <div class="box_list_info">
@@ -87,7 +106,8 @@
                 </div>
                 <div class="list_duration">3:40</div>
             </div>
-
+            
+            <!-- Music 3-->
             <div class="box_music" onclick="loadListSong(2)">
                 <div class="box_list_img"><img src="imgs/AltosOdyssey.png" class="list_img"></div>
                 <div class="box_list_info">
@@ -96,7 +116,8 @@
                 </div>
                 <div class="list_duration">5:25</div>
             </div>
-
+            
+            <!-- Music 4-->
             <div class="box_music" onclick="loadListSong(3)">
                 <div class="box_list_img"><img src="imgs/Speedrunners.png" class="list_img"></div>
                 <div class="box_list_info">
@@ -107,8 +128,10 @@
             </div>
 
         </div>
+        <!-- #endregion -->
     </div>
 
+    <!-- Javascript -->
     <script src="script.js"></script>
 </body>
 </html>

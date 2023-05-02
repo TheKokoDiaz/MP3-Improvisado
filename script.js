@@ -1,3 +1,4 @@
+//#region Variables
 const List = [
     {
         title: 'Quartz Quadrant Zone (Act 1) - Sonic CDX OST',
@@ -42,12 +43,16 @@ var Loop = 0;
 var RandomList = [];
 var RandomListIndex = 0;
 var RandomListExist = false;
+//#endregion
 
+//#region LoadSong
+/* Load a Song if is selected from the List */
 function loadListSong(x){
     RandomListExist = false;
     loadSong(x);
 }
 
+/* Load a Song when another song finish or is clicked the Prev/Next button */
 function loadSong(n){
     currentSong = n;
     const song = List[n];
@@ -76,11 +81,15 @@ function loadSong(n){
     ChangeImg(song.image);
 }
 
+/* Changes the image showed in the MP3 Player */
 function ChangeImg(img){
     var X = document.body;
     X.style.backgroundImage = 'url('+ img + ')';
 }
+//#endregion
 
+//#region Toggle Play
+/* Toggle between Play/Pause, modify the audio, the "disk" and the button image */
 function togglePlay(){
     var audio = document.getElementById('player');
     var src = audio.getAttribute('src');
@@ -124,7 +133,10 @@ function pauseSong(){
     var BtnPlay = document.getElementById('icon_play');
     BtnPlay.setAttribute('src', 'icons/play.png');
 }
+//#endregion
 
+//#region Change Song
+/* Move to Previous Song */
 function PrevSong(){
     if(Loop == 0 || Loop == 1){
         currentSong--;
@@ -147,6 +159,7 @@ function PrevSong(){
     loadSong(currentSong);
 }
 
+/* Move to Next Song */
 function NextSong(){
     if(Loop == 0 || Loop == 1){
         currentSong++;
@@ -168,7 +181,10 @@ function NextSong(){
 
     loadSong(currentSong);
 }
+//#endregion
 
+//#region Loop
+/* Changes between repeat all, repeat one and random */
 function toggleLoop(){
     var BtnLoop = document.getElementById('icon_loop');
     var LoopImg = 'icons/';
@@ -192,8 +208,11 @@ function toggleLoop(){
     
     BtnLoop.setAttribute('src', LoopImg);
 }
+//#endregion
 
+//#region Update Time
 function updateTime(){
+    /* Get controls */
     var audio = document.getElementById('player');
     var bar = document.getElementById('progress_bar');
     var TimePlay = document.getElementById('time_play');
@@ -203,6 +222,7 @@ function updateTime(){
 
     bar.value = (current / duration) * 100;
 
+    /* Make the duration to a time that can be see correctly */
     var minutes = Math.floor(current / 60);
     var seconds = Math.floor(current % 60);
 
@@ -212,6 +232,7 @@ function updateTime(){
 
     TimePlay.innerText = minutes + ':' + seconds;
 
+    /* When the music finish do: */
     if(current == duration){
         switch(Loop){
             case 0:
@@ -232,7 +253,10 @@ function updateTime(){
         }
     }
 }
+//#endregion
 
+//#region Random List
+/* To set a random list and avoid that the current song continues with a random play */
 function setRandomList(){
     if(RandomListExist == false){
         RandomListIndex = -1;
@@ -254,15 +278,20 @@ function setRandomList(){
         RandomListExist = true;
     }
 }
+//#endregion
 
+//#region Volume Control
+/* Variables */
 var BtnVolume = document.getElementById('icon_volume');
 
 var VolumeVar = document.getElementById('volume_bar');
 var Vol = document.getElementById('volume');
 
+/* EventListeners to modify the audio when a mouse pointer or a finger touch the control */
 VolumeVar.addEventListener('mousemove', changeVolume);
 VolumeVar.addEventListener('touchmove', changeVolume);
 
+/* Show volume bar with the control and the volume info */
 function showVolumeBar(){
     var box = document.getElementById('box_volume_bar');
 
@@ -271,12 +300,13 @@ function showVolumeBar(){
     box.style.left = event.clientX + 'px';
 }
 
-
+/* Hide the volume box (with controls and info) */
 function hideVolumeBar(){
     var box = document.getElementById('box_volume_bar');
     box.style.display = 'none';
 }
 
+/* With this function, the audio volume can be changed */
 function changeVolume(){
     var audio = document.getElementById('player');
 
@@ -284,3 +314,4 @@ function changeVolume(){
     audio.volume = VolumeVar.value/100;
 
 }
+//#endregion

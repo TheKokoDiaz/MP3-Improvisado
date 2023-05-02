@@ -1,3 +1,5 @@
+/* #region General */
+/* #region Body*/
 html{
     height: 100%;
 
@@ -36,6 +38,7 @@ body{
 
     gap: 0px 1%;
 }
+/* #endregion */
 
 #msg_hover{
     position: absolute;
@@ -54,6 +57,7 @@ body{
     z-index: 5;
 }
 
+/* #region Volume*/
 #box_volume_bar{
     width: 40%;
     position: absolute;
@@ -84,7 +88,9 @@ body{
 #volume{
     width: 30%;
 }
+/* #endregion */
 
+/* #region MP3*/
 #mp3_general_box{
     position: relative;
     width: 90%;
@@ -248,7 +254,9 @@ body{
     max-height: 100%;
     object-fit: contain;
 }
+/* #endregion */
 
+/* #region List*/
 #box_list{
     position: relative;
     width: 93%;
@@ -327,8 +335,12 @@ body{
 .list_duration{
     width: 10%;
 }
+/* #endregion */
 
-@media screen and (max-width: 500px) {
+/* #endregion */
+
+/* #region Movil */
+@media screen and (max-width: 500px) and (orientation: portrait) {
     #box_volume_bar{
         width: 75%;
     }
@@ -371,7 +383,9 @@ body{
         height: 40%;
     }
 }
+/* #endregion */
 
+/* #region Tablet */
 @media screen and (min-width: 501px) and (max-width: 1024px){
     html{
         font-size: 18px;
@@ -473,7 +487,9 @@ body{
         padding-bottom: 5px;
     }
 }
+/* #endregion */
 
+/* #region Laptop */
 @media screen and (min-width: 1025px){
     html{
         font-size: 20px;
@@ -591,3 +607,4 @@ body{
         padding-bottom: 10px;
     }
 }
+/* #endregion */
