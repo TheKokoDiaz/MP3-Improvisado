@@ -1,4 +1,5 @@
 //#region Variables
+/* Variables of the musics, contains their info, image and file path */
 const List = [
     {
         title: 'Quartz Quadrant Zone (Act 1) - Sonic CDX OST',
@@ -27,7 +28,22 @@ const List = [
         file: 'music/SpeedRunners_Level1.mp3',
         image: 'imgs/Speedrunners.png',
         duration: '2:03'
-    }/* ,
+    },
+    {
+        title: 'Theia Sky Ruins - Pokémon Unite OST',
+        artist: 'Pokémon Unite',
+        file: 'music/Theia_Sky_Ruins.mp3',
+        image: 'imgs/PokemonUnite.jpg',
+        duration: '3:29'
+    },
+    {
+        title: 'Sweet Mountain (Act 1) - Sonic Colors OST',
+        artist: 'DeoxysPrime',
+        file: 'music/Sweet_Mountain_(Act1).mp3',
+        image: 'imgs/SonicColors.jpeg',
+        duration: '3:49'
+    }
+    /* ,
     {
         title: '',
         artist: '',
@@ -37,15 +53,55 @@ const List = [
     } */
 ];
 
+/* Variables to control the order of playing, toggle play and random play */
 var currentSong = 0;
 var IsPlaying = false;
 var Loop = 0;
 var RandomList = [];
 var RandomListIndex = 0;
 var RandomListExist = false;
+
+/* Variables to get control of the DOM */
+var audio = document.getElementById('player');
+var bar = document.getElementById('progress_bar');
+
+var SongTitle = document.getElementById('name');
+var SongArtist = document.getElementById('artist');
+var SongImage = document.getElementById('mp3_image');
+
+var TimePlay = document.getElementById('time_play');
+var TimeEnd = document.getElementById('time_end');
+
+var BtnPlay = document.getElementById('icon_play');
+var BtnLoop = document.getElementById('icon_loop');
+var BtnVolume = document.getElementById('icon_volume');
+
+var VolumeVar = document.getElementById('volume_bar');
+var Vol = document.getElementById('volume');
+
+var box = document.getElementById('box_volume_bar');
+
+var box_list = document.getElementById('box_list');
+
+/* EventListeners to modify the audio when a mouse pointer or a finger touch the control */
+VolumeVar.addEventListener('mousemove', changeVolume);
+VolumeVar.addEventListener('touchmove', changeVolume);
+
+/* EventListener to charge the music list when the page starts */
+window.addEventListener('load', LoadAllSongs);
 //#endregion
 
-//#region LoadSong
+//#region Load All Songs
+/* This function, write in the DOM all the music that are available from the List when the HTML is loaded correctly */
+function LoadAllSongs(){
+    for(var i = 0; i <= List.length - 1; i++){
+        var info = List[i];
+        box_list.innerHTML += '<!-- Music ' + (i + 1) + ' --> <div class="box_music" onclick="loadListSong( ' + i + ' )"><div class="box_list_img"><img src="' + info.image + '" class="list_img"></div><div class="box_list_info"><div class="list_name">' + info.title + '</div><div class="list_artist">' + info.artist + '</div></div><div class="list_duration">' + info.duration + '</div></div>';
+    }
+}
+//#endregion
+
+//#region Load Song
 /* Load a Song if is selected from the List */
 function loadListSong(x){
     RandomListExist = false;
@@ -57,14 +113,7 @@ function loadSong(n){
     currentSong = n;
     const song = List[n];
 
-    var audio = document.getElementById('player');
     audio.addEventListener('timeupdate', updateTime);
-
-    var SongTitle = document.getElementById('name');
-    var SongArtist = document.getElementById('artist');
-    var SongImage = document.getElementById('mp3_image');
-    
-    var TimeEnd = document.getElementById('time_end');
 
     audio.setAttribute('src', song.file);
     playSong();
@@ -75,7 +124,6 @@ function loadSong(n){
     SongArtist.innerText = song.artist;
     SongImage.setAttribute('src', song.image);
 
-    
     TimeEnd.innerText = song.duration;
     
     ChangeImg(song.image);
@@ -91,7 +139,6 @@ function ChangeImg(img){
 //#region Toggle Play
 /* Toggle between Play/Pause, modify the audio, the "disk" and the button image */
 function togglePlay(){
-    var audio = document.getElementById('player');
     var src = audio.getAttribute('src');
     
     if(src != null){
@@ -111,26 +158,20 @@ function togglePlay(){
 function playSong(){
     IsPlaying = true;
 
-    var audio = document.getElementById('player');
     audio.play();
 
-    var SongImage = document.getElementById('mp3_image');
     SongImage.style.animation = 'rotate 20s linear infinite';
 
-    var BtnPlay = document.getElementById('icon_play');
     BtnPlay.setAttribute('src', 'icons/pause.png');
 }
 
 function pauseSong(){
     IsPlaying = false;
 
-    var audio = document.getElementById('player');
     audio.pause();
 
-    var SongImage = document.getElementById('mp3_image');
     SongImage.style.animation = 'none';
 
-    var BtnPlay = document.getElementById('icon_play');
     BtnPlay.setAttribute('src', 'icons/play.png');
 }
 //#endregion
@@ -186,7 +227,6 @@ function NextSong(){
 //#region Loop
 /* Changes between repeat all, repeat one and random */
 function toggleLoop(){
-    var BtnLoop = document.getElementById('icon_loop');
     var LoopImg = 'icons/';
 
     switch(Loop){
@@ -212,11 +252,6 @@ function toggleLoop(){
 
 //#region Update Time
 function updateTime(){
-    /* Get controls */
-    var audio = document.getElementById('player');
-    var bar = document.getElementById('progress_bar');
-    var TimePlay = document.getElementById('time_play');
-
     var current = audio.currentTime;
     var duration = audio.duration;
 
@@ -281,20 +316,8 @@ function setRandomList(){
 //#endregion
 
 //#region Volume Control
-/* Variables */
-var BtnVolume = document.getElementById('icon_volume');
-
-var VolumeVar = document.getElementById('volume_bar');
-var Vol = document.getElementById('volume');
-
-/* EventListeners to modify the audio when a mouse pointer or a finger touch the control */
-VolumeVar.addEventListener('mousemove', changeVolume);
-VolumeVar.addEventListener('touchmove', changeVolume);
-
 /* Show volume bar with the control and the volume info */
 function showVolumeBar(){
-    var box = document.getElementById('box_volume_bar');
-
     box.style.display = 'flex';
     box.style.top = event.clientY + 'px';
     box.style.left = event.clientX + 'px';
@@ -302,16 +325,13 @@ function showVolumeBar(){
 
 /* Hide the volume box (with controls and info) */
 function hideVolumeBar(){
-    var box = document.getElementById('box_volume_bar');
     box.style.display = 'none';
 }
 
 /* With this function, the audio volume can be changed */
 function changeVolume(){
-    var audio = document.getElementById('player');
-
     Vol.innerText = VolumeVar.value + ' / 100';
     audio.volume = VolumeVar.value/100;
-
 }
 //#endregion
+

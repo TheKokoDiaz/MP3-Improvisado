@@ -17,7 +17,9 @@
     <div id="blur">
         <div id="msg_hover">Texto</div>
         
+        <!-- #region MP3 Player -->
         <!-- #region Volume Bar-->
+        <!-- Is hidden, when the volume button is clicked, this will appear and allow us change the volume -->
         <div id="box_volume_bar" onclick="hideVolumeBar()">
             <div class="box_volume">✖</div>
             <input type="range" id="volume_bar" min="0" max="100" value="100" step="1">
@@ -25,7 +27,7 @@
         </div>
         <!-- #endregion -->
         
-        <!-- #region MP3 Player -->
+        <!-- Is all the box that contains the music playing info and the controls -->
         <div id="mp3_general_box">
             <audio id="player"><!-- Contains the audio -->
                 <source src="" type="audio/mpeg">
@@ -84,50 +86,8 @@
         <!-- #endregion -->
 
         <!-- #region List -->
-        <!-- Is the list that shows the music that can be played and their information -->
-        <div id="box_list">
-            
-            <!-- Music 1-->    
-            <div class="box_music" onclick="loadListSong(0)">
-                <div class="box_list_img"><img src="imgs/SonicCDX_QQZ1.jpg" class="list_img"></div>
-                <div class="box_list_info">
-                    <div class="list_name">Quartz Quadrant Zone (Act 1) - Sonic CDX OST</div>
-                    <div class="list_artist">Daan Demmers</div>
-                </div>
-                <div class="list_duration">3:06</div>
-            </div>
-            
-            <!-- Music 2-->
-            <div class="box_music" onclick="loadListSong(1)">
-                <div class="box_list_img"><img src="imgs/SonicCDX_PPZ1.jpg" class="list_img"></div>
-                <div class="box_list_info">
-                    <div class="list_name">Palmtree Panic Zone (Act 1) - Sonic CDX OST</div>
-                    <div class="list_artist">Daan Demmers</div>
-                </div>
-                <div class="list_duration">3:40</div>
-            </div>
-            
-            <!-- Music 3-->
-            <div class="box_music" onclick="loadListSong(2)">
-                <div class="box_list_img"><img src="imgs/AltosOdyssey.png" class="list_img"></div>
-                <div class="box_list_info">
-                    <div class="list_name">Alto's Odyssey Main Theme</div>
-                    <div class="list_artist">Alto's Odyssey OST</div>
-                </div>
-                <div class="list_duration">5:25</div>
-            </div>
-            
-            <!-- Music 4-->
-            <div class="box_music" onclick="loadListSong(3)">
-                <div class="box_list_img"><img src="imgs/Speedrunners.png" class="list_img"></div>
-                <div class="box_list_info">
-                    <div class="list_name">SpeedRunners Level 1</div>
-                    <div class="list_artist">DoubleDutch Games</div>
-                </div>
-                <div class="list_duration">2:03</div>
-            </div>
-
-        </div>
+        <!-- Is the list that shows the music that can be played and their information, is loaded from Javascript -->
+        <div id="box_list"></div>
         <!-- #endregion -->
     </div>
 
