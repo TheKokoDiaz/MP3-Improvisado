@@ -38,7 +38,7 @@ const List = [
     },
     {
         title: 'Sweet Mountain (Act 1) - Sonic Colors OST',
-        artist: 'DeoxysPrime',
+        artist: 'Deoxys Prime',
         file: 'music/Sweet_Mountain_(Act1).mp3',
         image: 'imgs/SonicColors.jpeg',
         duration: '3:49'
